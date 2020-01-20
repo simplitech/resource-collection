@@ -86,11 +86,6 @@ subject.params // ignores null fields and returns { abc: 123, you: 'and me' }
 subject.clearFilters() // remove all fields from filter
 ```
 
-### You can easily use lodash with the `lodash` property
-```typescript
-const withoutFirst = subject.lodash.drop(1)
-withoutFirst.value()[0].$tag // returns 'second'
-```
  ## PageCollection
  PageCollection is useful to work with paginated collections, it extends ResourceCollection 
 
@@ -109,14 +104,17 @@ class MyPageCollection extends PageCollection<MyResource> {
 
   async queryAsPage() {
     // implement how to update itself with API calls
-    // use the PageCollection properties sending to the server
-    console.log(this.params) // { search, currentPage, perPage, orderBy, asc }
-    const resp = await fetch({/* your http call using the params */})
-    // then you need to fill the items and total
+    // send the PageCollection properties to the server
+    // { search, currentPage, perPage, orderBy, asc }
+    // and set other PageCollection properties on response
     // this.total = <the amount of all items, as if it wasn't paginated>
     // this.items = <the items on the current page>
     // the class is prepared to be used with class-transformer library
-    return resp
+    
+    // example using @simpli/serialized-request:
+    return await Request.get(`/mything`, {params: this.params})
+          .as(this)
+          .getResponse()
   }
 
 }

@@ -1,5 +1,4 @@
-import { omitBy, chain } from 'lodash'
-import { classToClass, classToPlain, ClassTransformOptions } from 'class-transformer'
+import { classToClass, ClassTransformOptions } from 'class-transformer'
 import { IResource } from './IResource'
 import { ClassType } from './ClassType'
 import { Dictionary } from './Dictionary'
@@ -20,15 +19,16 @@ export class ResourceCollection<R extends IResource> {
 
   readonly instance: R
 
-  get lodash() {
-    return chain(this.items)
-  }
-
   get params(): Dictionary<any> {
     const result: QueryFilter = {}
 
     for (const filter of this.filters) {
-      const params = omitBy(classToPlain(filter), item => item === null) as QueryFilter
+      const params: QueryFilter = {}
+      Object.keys(filter).forEach((key: string) => {
+        if (filter[key]) {
+          params[key] = filter[key]
+        }
+      })
       Object.assign(result, params)
     }
 

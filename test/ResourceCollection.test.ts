@@ -101,17 +101,6 @@ describe("ResourceCollection", () => {
     subject.clearFilters()
     expect(subject.params).toEqual({})
   })
-  it("can be used with lodash", () => {
-    const subject = new ResourceCollection(MyResource, [
-      new MyResource(1, 'first'),
-      new MyResource(2, 'second'),
-      new MyResource(3, 'third'),
-      new MyResource(4, 'fourth')
-    ])
-
-    const withoutFirst = subject.lodash.drop(1)
-    expect(withoutFirst.value()[0].myName).toBe('second')
-  })
   it("clears itself when onBeforeSerialization is called", () => {
     const subject = new ResourceCollection(MyResource, [
       new MyResource(1, 'first'),
