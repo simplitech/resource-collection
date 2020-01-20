@@ -123,7 +123,7 @@ class MyPageCollection extends PageCollection<MyResource> {
 ```
 
 ## PageCollection props and methods
-```
+```typescript
 const subject = new MyPageCollection()
 
 subject.setPerPage(20)
