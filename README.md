@@ -87,7 +87,7 @@ subject.clearFilters() // remove all fields from filter
 ```
 
  ## PageCollection
- PageCollection is useful to work with paginated collections, it extends ResourceCollection 
+PageCollection is useful to work with paginated collections, it extends ResourceCollection 
 
 ### Import
 ```typescript
