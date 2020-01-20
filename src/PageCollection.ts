@@ -34,7 +34,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   public items: R[] = []
 
   @Expose({ name: 'total', toClassOnly: true })
-  readonly total: number | null = null
+  total: number | null = null
 
   get isLastPage() {
     const page = this.currentPage || 0
