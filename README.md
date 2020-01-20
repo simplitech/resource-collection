@@ -21,7 +21,7 @@ ResourceCollection is a Collection of items containing id and tag
 
 ### Import
 ```typescript
-import { ResourceCollection } from 'resource-collection'
+import { ResourceCollection, IResource } from 'resource-collection'
 ```
 
 ### Create your resource class 
@@ -99,7 +99,12 @@ const withoutFirst = subject.lodash.drop(1)
 withoutFirst.value()[0].myName // returns 'second'
 ```
  ## PageCollection
- PageCollection is useful to work with paginated collections, it extends ResourceCollection  
+ PageCollection is useful to work with paginated collections, it extends ResourceCollection 
+
+### Import
+```typescript
+import { PageCollection, IResource } from 'resource-collection'
+``` 
  
  ### Create your PageCollection
  Differently of ResourceCollection, you must create a class for your collection
