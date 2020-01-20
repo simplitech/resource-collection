@@ -1,12 +1,5 @@
 # Resource-Collection
 
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Greenkeeper badge](https://badges.greenkeeper.io/simplitech/resource-collection.svg)](https://greenkeeper.io/)
-[![Travis](https://img.shields.io/travis/simplitech/resource-collection.svg)](https://travis-ci.org/simplitech/resource-collection)
-[![Coveralls](https://img.shields.io/coveralls/simplitech/resource-collection.svg)](https://coveralls.io/github/simplitech/resource-collection)
-[![Dev Dependencies](https://david-dm.org/simplitech/resource-collection/dev-status.svg)](https://david-dm.org/simplitech/resource-collection?type=dev)
-[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://paypal.me/AJoverMorales)
-
 A data-structure library to work with ResourceCollections (with Id and Tag) and PageCollections (search and order as well) 
 
 # Install
@@ -57,8 +50,8 @@ You must informing the resource type and optionally an array of items
 ```typescript
 subject.size() // returns 4
 subject.isEmpty() // returns false
-subject.first().myName // returns 'first'
-subject.last().myName // returns 'fourth'
+subject.first().$tag // returns 'first'
+subject.last().$tag // returns 'fourth'
 
 const allWPH = subject.allWithPlaceholder('hint')
 allWPH[0].$tag // returns 'hint'
@@ -66,11 +59,11 @@ allWPH[0].$tag // returns 'hint'
 const allWPHnull = subject.allWithPlaceholder()
 allWPHnull[0] // returns null
 
-subject.getById(2).myName // returns 'second'
+subject.getById(2).$tag // returns 'second'
 
 const twoAnd3 = subject.getManyIds([2, 3])
-twoAnd3[0].myName // returns 'second'
-twoAnd3[1].myName // returns 'third'
+twoAnd3[0].$tag // returns 'second'
+twoAnd3[1].$tag // returns 'third'
 
 const thebad = new MyResource(666, 'from hell')
 const thegood = new MyResource(777, 'mighty one')
@@ -96,7 +89,7 @@ subject.clearFilters() // remove all fields from filter
 ### You can easily use lodash with the `lodash` property
 ```typescript
 const withoutFirst = subject.lodash.drop(1)
-withoutFirst.value()[0].myName // returns 'second'
+withoutFirst.value()[0].$tag // returns 'second'
 ```
  ## PageCollection
  PageCollection is useful to work with paginated collections, it extends ResourceCollection 
