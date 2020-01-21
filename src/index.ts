@@ -1,3 +1,7 @@
 import 'core-js'
 export * from './ResourceCollection'
 export * from './PageCollection'
+export * from './IResource'
+export * from './ClassType'
+export * from './Dictionary'
+export * from './QueryFilter'

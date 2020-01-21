@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "dist/resource-collection.umd.js",
   "module": "dist/resource-collection.es5.js",
-  "typings": "dist/types/resource-collection.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
