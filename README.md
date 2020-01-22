@@ -14,7 +14,7 @@ ResourceCollection is a Collection of items containing id and tag
 
 ### Import
 ```typescript
-import { ResourceCollection, IResource } from 'resource-collection'
+import { ResourceCollection, IResource } from '@simpli/resource-collection'
 ```
 
 ### Create your resource class 
@@ -91,7 +91,7 @@ PageCollection is useful to work with paginated collections, it extends Resource
 
 ### Import
 ```typescript
-import { PageCollection, IResource } from 'resource-collection'
+import { PageCollection, IResource } from '@simpli/resource-collection'
 ``` 
  
  ### Create your PageCollection
