@@ -1,6 +1,6 @@
 {
   "name": "@simpli/resource-collection",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A data-structure library to work with ResourceCollections (with Id and Tag) and PageCollections (search and order as well)",
   "keywords": [],
   "main": "dist/resource-collection.umd.js",
