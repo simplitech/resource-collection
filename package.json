@@ -97,7 +97,6 @@
     "jest": "^23.6.0",
     "jest-config": "^23.6.0",
     "lint-staged": "^8.0.0",
-    "lodash": "^4.17.15",
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
@@ -126,6 +125,5 @@
   "directories": {
     "doc": "docs",
     "test": "test"
-  },
-  "dependencies": {}
+  }
 }

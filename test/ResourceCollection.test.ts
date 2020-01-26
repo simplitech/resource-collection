@@ -1,5 +1,4 @@
-import { ResourceCollection } from '../src'
-import { IResource } from '../src/IResource'
+import { ResourceCollection, IResource } from '../src'
 
 class MyResource implements IResource {
   get $id (){ return this.myId }
