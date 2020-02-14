@@ -117,7 +117,7 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.16.7",
-    "typescript": "^3.0.3"
+    "typescript": "3.4.4"
   },
   "peerDependencies": {
     "class-transformer": "^0.2.3"
