@@ -1,4 +1,4 @@
-import { classToClass, ClassTransformOptions } from 'class-transformer'
+import { classToClass, classToPlain, ClassTransformOptions } from 'class-transformer'
 import { IResource } from './IResource'
 import { ClassType } from './ClassType'
 import { Dictionary } from './Dictionary'
@@ -24,9 +24,10 @@ export class ResourceCollection<R extends IResource> {
 
     for (const filter of this.filters) {
       const params: QueryFilter = {}
-      Object.keys(filter).forEach((key: string) => {
-        if (filter[key]) {
-          params[key] = filter[key]
+      const plainFilter: any = classToPlain(filter)
+      Object.keys(plainFilter).forEach((key: string) => {
+        if (plainFilter[key] !== null) {
+          params[key] = plainFilter[key]
         }
       })
       Object.assign(result, params)
