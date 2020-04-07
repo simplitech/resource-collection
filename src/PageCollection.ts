@@ -92,7 +92,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
       this.search.length >= PageCollection.defaultMinCharToSearch
     ) {
       this.currentPage = 0
-      return await this.queryAsPage()
+      return this.queryAsPage()
     }
     return Promise.resolve()
   }
@@ -104,7 +104,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
       this.asc = true
     }
     this.orderBy = column
-    return await this.queryAsPage()
+    return this.queryAsPage()
   }
 
   async queryCurrentPage(val: number) {
@@ -113,13 +113,13 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
     } else if (val < 0) {
       this.currentPage = 0
     } else this.currentPage = val
-    return await this.queryAsPage()
+    return this.queryAsPage()
   }
 
   async queryPrevPage() {
     if (this.currentPage !== null && this.currentPage > 0) {
       this.currentPage--
-      return await this.queryAsPage()
+      return this.queryAsPage()
     }
     return Promise.resolve()
   }
@@ -127,7 +127,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   async queryNextPage() {
     if (this.currentPage !== null && this.currentPage < this.lastPage) {
       this.currentPage++
-      return await this.queryAsPage()
+      return this.queryAsPage()
     }
     return Promise.resolve()
   }
