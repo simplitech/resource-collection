@@ -1,8 +1,12 @@
 import { PageCollection, IResource } from '../src'
 
 class MyResource implements IResource {
-  get $id (){ return this.myId }
-  get $tag () { return this.myName }
+  get $id() {
+    return this.myId
+  }
+  get $tag() {
+    return this.myName
+  }
 
   myId: number
   myName: string
@@ -25,17 +29,20 @@ class MyPageCollection extends PageCollection<MyResource> {
     this.queryAsPageCallCount++
     return null
   }
-
 }
 
-describe("PageCollection", () => {
-  it("can be instantiable", () => {
+describe('PageCollection', () => {
+  it('can be instantiable', () => {
     const subject = new MyPageCollection()
     expect(subject).toBeInstanceOf(MyPageCollection)
     expect(subject.isEmpty()).toBe(true)
   })
-  it("works with pages", async () => {
+  it('works with pages', async () => {
     const subject = new MyPageCollection()
+
+    MyPageCollection.defaultBeforeQueryAction()
+    MyPageCollection.defaultAfterQueryAction()
+    MyPageCollection.defaultErrorQueryAction()
 
     subject.total = 90 // only works on this tests
     subject.setPerPage(20)
@@ -92,7 +99,7 @@ describe("PageCollection", () => {
     expect(subject.perPage).toBeNull()
     expect(subject.queryAsPageCallCount).toBe(5) // not called
   })
-  it("works with search", async () => {
+  it('works with search', async () => {
     const subject = new MyPageCollection()
 
     expect(subject.queryAsPageCallCount).toBe(0)
@@ -108,7 +115,7 @@ describe("PageCollection", () => {
     await subject.querySearch()
     expect(subject.queryAsPageCallCount).toBe(2)
   })
-  it("works with orderBy and Asc", async () => {
+  it('works with orderBy and Asc', async () => {
     const subject = new MyPageCollection()
 
     expect(subject.orderBy).toBeNull()
@@ -133,5 +140,4 @@ describe("PageCollection", () => {
 
     expect(subject.queryAsPageCallCount).toBe(2) // not called
   })
-
 })
