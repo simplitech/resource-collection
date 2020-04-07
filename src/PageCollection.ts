@@ -13,6 +13,15 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   static defaultMinCharToSearch = 3
   static defaultCurrentPage = 0
   static defaultPerPage = 20
+  static defaultBeforeQueryAction = () => {
+    /**/
+  }
+  static defaultAfterQueryAction = () => {
+    /**/
+  }
+  static defaultErrorQueryAction = () => {
+    /**/
+  }
 
   @Expose({ name: 'query', toPlainOnly: true })
   search: string | null = null
@@ -77,7 +86,11 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   abstract async queryAsPage(): Promise<any>
 
   async querySearch() {
-    if (!this.search || !this.search.length || this.search.length >= PageCollection.defaultMinCharToSearch) {
+    if (
+      !this.search ||
+      !this.search.length ||
+      this.search.length >= PageCollection.defaultMinCharToSearch
+    ) {
       this.currentPage = 0
       return await this.queryAsPage()
     }
