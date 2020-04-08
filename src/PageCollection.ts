@@ -13,15 +13,6 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   static defaultMinCharToSearch = 3
   static defaultCurrentPage = 0
   static defaultPerPage = 20
-  static defaultBeforeQueryAction = () => {
-    /**/
-  }
-  static defaultAfterQueryAction = () => {
-    /**/
-  }
-  static defaultErrorQueryAction = () => {
-    /**/
-  }
 
   @Expose({ name: 'query', toPlainOnly: true })
   search: string | null = null

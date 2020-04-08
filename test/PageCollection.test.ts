@@ -40,10 +40,6 @@ describe('PageCollection', () => {
   it('works with pages', async () => {
     const subject = new MyPageCollection()
 
-    MyPageCollection.defaultBeforeQueryAction()
-    MyPageCollection.defaultAfterQueryAction()
-    MyPageCollection.defaultErrorQueryAction()
-
     subject.total = 90 // only works on this tests
     subject.setPerPage(20)
     expect(subject.lastPage).toBe(4) // 0, 1, 2, 3, 4 :: 0-19, 20-39, 40-59, 60-79, 80-89
