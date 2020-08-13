@@ -1,6 +1,7 @@
 import 'core-js'
 export * from './ResourceCollection'
 export * from './PageCollection'
+export * from './ExpansibleCollection'
 export * from './IResource'
 export * from './ClassType'
 export * from './Dictionary'
