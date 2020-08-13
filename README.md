@@ -156,3 +156,51 @@ subject.asc // returns true
 await subject.queryOrderBy('column')
 subject.asc // returns false
 ```
+
+ ### Create your ExpansibleCollection
+ This collection can concat new items.
+ Note this class expands PageCollection, so this can be used as a regular pagination too.
+ ```typescript
+class MyExpansibleCollection extends ExpansibleCollection<MyResource> {
+  constructor() {
+    super(MyResource)
+  }
+
+  customFilter: string | null = null  
+
+  async queryAsPage() {
+    // implement how to update itself with API calls
+    // send the PageCollection properties to the server
+    // { search, currentPage, perPage, orderBy, asc }
+    // and set other PageCollection properties on response
+    // this.total = <the amount of all items, as if it wasn't paginated>
+    // this.items = <the items on the current page>
+    // the class is prepared to be used with class-transformer library
+    
+    // example using @simpli/serialized-request:
+    return await Request.get(`/mything`, {params: this.params})
+          .as(this)
+          .getResponse()
+  }
+
+}
+```
+
+## ResourceCollection props and methods
+```typescript
+const subject = new MyExpansibleCollection()
+
+subject.setPerPage(20)
+
+await subject.expand() // showing 20 items
+await subject.expand() // showing more 20 items; total = 40
+await subject.expand() // showing more 20 items; total = 60
+
+subject.customFilter = 'foo'
+
+await subject.update() // updates the information after the filter; still 60 items
+// or
+await subject.queryToFirstPage() // reset collection to its initial state; showing 20 items
+
+await subject.queryOrderBy('bar') // apply orderby filter
+```
