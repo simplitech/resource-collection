@@ -105,6 +105,9 @@ describe('ExpansibleCollection', () => {
     expect(subject.currentPage).toBe(0)
     expect(subject.items.length).toBe(20)
     expect(subject.maxPerPage).toBe(20)
+
+    subject.onBeforeSerialization()
+    subject.onAfterSerialization()
   })
 
   it('works with pages', async () => {
