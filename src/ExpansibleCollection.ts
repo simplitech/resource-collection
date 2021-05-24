@@ -85,7 +85,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
 
     this.orderBy = column
 
-    return this.queryToFirstPage()
+    return this.update()
   }
 
   onBeforeSerialization() {
