@@ -77,25 +77,15 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
   }
 
   async queryOrderBy(column: string) {
-    const currentPage = Number(this.currentPage) || 0
-    const perPage = Number(this.perPage) || 0
-
-    this.currentPage = 0
-    this.perPage = this.maxPerPage
-
     if (this.orderBy === column) {
       this.asc = !this.asc
     } else {
       this.asc = true
     }
+
     this.orderBy = column
 
-    const resp = await this.queryAsExpansible()
-
-    this.currentPage = currentPage
-    this.perPage = perPage
-
-    return resp
+    return this.queryToFirstPage()
   }
 
   onBeforeSerialization() {
