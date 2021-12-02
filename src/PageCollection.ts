@@ -18,7 +18,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   search: string | null = null
 
   @Expose({ name: 'page', toPlainOnly: true })
-  currentPage: number | null = PageCollection.defaultCurrentPage
+  currentPage: number = PageCollection.defaultCurrentPage
 
   @Expose({ name: 'limit', toPlainOnly: true })
   perPage: number | null = PageCollection.defaultPerPage
@@ -46,7 +46,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   }
 
   noPagination() {
-    return this.setCurrentPage(null).setPerPage(null)
+    return this.setCurrentPage(PageCollection.defaultCurrentPage).setPerPage(null)
   }
 
   setSearch(val: string | null) {
@@ -54,7 +54,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
     return this
   }
 
-  setCurrentPage(val: number | null) {
+  setCurrentPage(val: number) {
     this.currentPage = val
     return this
   }
