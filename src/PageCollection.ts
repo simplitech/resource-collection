@@ -108,7 +108,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   }
 
   async queryPrevPage() {
-    if (this.currentPage !== null && this.currentPage > 0) {
+    if (this.currentPage > 0) {
       this.currentPage--
       return this.queryAsPage()
     }
@@ -116,7 +116,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
   }
 
   async queryNextPage() {
-    if (this.currentPage !== null && this.currentPage < this.lastPage) {
+    if (this.currentPage < this.lastPage) {
       this.currentPage++
       return this.queryAsPage()
     }
