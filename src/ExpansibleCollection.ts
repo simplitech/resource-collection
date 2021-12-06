@@ -4,7 +4,7 @@ import { PageCollection } from './PageCollection'
 
 @Exclude()
 export abstract class ExpansibleCollection<R extends IResource> extends PageCollection<R> {
-  currentPage: number | null = null
+  currentPage: number = -1
   queryAsExpansible = this.queryAsPage
 
   items: R[] = [] // final list
@@ -26,15 +26,10 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
   }
 
   async expand() {
-    if (this.isLastPage && this.currentPage !== null) {
+    if (this.isLastPage && this.currentPage > -1) {
       return
     }
-
-    if (this.currentPage === null) {
-      this.currentPage = 0
-    } else {
-      this.currentPage += 1
-    }
+    this.currentPage += 1
 
     this.isExpanding = true
 
@@ -68,7 +63,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
   }
 
   async queryToFirstPage() {
-    this.currentPage = null
+    this.currentPage = -1
     this.items = []
     this.expandedItems = []
     this.addedItems = []
@@ -89,6 +84,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
   }
 
   onBeforeSerialization() {
+    this.expandedItems = this.items
     this.addedItems = []
     this.items = []
   }

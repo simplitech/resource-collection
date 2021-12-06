@@ -70,19 +70,9 @@ describe('PageCollection', () => {
     expect(subject.currentPage).toBe(0)
     expect(subject.queryAsPageCallCount).toBe(4) // not called
 
-    subject.setCurrentPage(null)
-    await subject.queryPrevPage()
-    expect(subject.currentPage).toBeNull()
-    expect(subject.queryAsPageCallCount).toBe(4) // not called
-
     subject.setCurrentPage(10)
     await subject.queryNextPage()
     expect(subject.currentPage).toBe(10)
-    expect(subject.queryAsPageCallCount).toBe(4) // not called
-
-    subject.setCurrentPage(null)
-    await subject.queryNextPage()
-    expect(subject.currentPage).toBeNull()
     expect(subject.queryAsPageCallCount).toBe(4) // not called
 
     subject.setCurrentPage(2)
@@ -91,7 +81,7 @@ describe('PageCollection', () => {
     expect(subject.queryAsPageCallCount).toBe(5)
 
     subject.noPagination()
-    expect(subject.currentPage).toBeNull()
+    expect(subject.currentPage).toBe(0)
     expect(subject.perPage).toBeNull()
     expect(subject.queryAsPageCallCount).toBe(5) // not called
   })
