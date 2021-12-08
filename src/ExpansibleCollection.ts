@@ -34,7 +34,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
   }
 
   async expand() {
-    if (this.isLastPage && this.currentPage !== null) {
+    if (this.isLastPage && this._currentPage !== null) {
       return
     }
 
