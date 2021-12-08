@@ -52,7 +52,7 @@ describe('ExpansibleCollection', () => {
     subject.setPerPage(20)
     expect(subject.lastPage).toBe(4) // 0, 1, 2, 3, 4 :: 0-19, 20-39, 40-59, 60-79, 80-99
 
-    expect(subject.currentPage).toBe(-1)
+    expect(subject.currentPage).toBe(0)
     expect(subject.maxPerPage).toBe(20)
 
     await subject.expand() // 0-19
