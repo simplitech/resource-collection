@@ -1,4 +1,4 @@
-import { classToClass, Exclude, Expose, Type } from 'class-transformer'
+import { classToClass, deserialize, Exclude, Expose, serialize, Type } from 'class-transformer'
 import { IResource } from './IResource'
 import { PageCollection } from './PageCollection'
 
@@ -55,7 +55,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
     this.expandedItems.push(...this.addedItems)
 
     // 5 - populate items with cloned list
-    this.items = classToClass(this.expandedItems)
+    this.items = [...this.expandedItems]
 
     this.isExpanding = false
   }
