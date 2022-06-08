@@ -55,7 +55,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
     this.expandedItems.push(...this.addedItems)
 
     // 5 - populate items with cloned list
-    this.items = classToClass(this.expandedItems)
+    this.items = [...this.expandedItems]
 
     this.isExpanding = false
   }
