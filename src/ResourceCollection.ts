@@ -1,4 +1,4 @@
-import { classToClass, classToPlain, ClassTransformOptions } from 'class-transformer'
+import { ClassTransformOptions, instanceToInstance, instanceToPlain } from 'class-transformer'
 import { IResource } from './IResource'
 import { ClassType } from './ClassType'
 import { Dictionary } from './Dictionary'
@@ -24,7 +24,7 @@ export class ResourceCollection<R extends IResource> {
 
     for (const filter of this.filters) {
       const params: QueryFilter = {}
-      const plainFilter: any = classToPlain(filter)
+      const plainFilter: any = instanceToPlain(filter)
       Object.keys(plainFilter).forEach((key: string) => {
         if (plainFilter[key] !== null) {
           params[key] = plainFilter[key]
@@ -108,7 +108,7 @@ export class ResourceCollection<R extends IResource> {
   }
 
   private clone<T>(fromEntity: T, options?: ClassTransformOptions): T {
-    return classToClass(fromEntity, options)
+    return instanceToInstance(fromEntity, options)
   }
 
   onBeforeSerialization() {

@@ -1,4 +1,4 @@
-import { classToClass, Exclude, Expose, Type } from 'class-transformer'
+import { instanceToInstance, Exclude, Expose, Type } from 'class-transformer'
 import { IResource } from './IResource'
 import { PageCollection } from './PageCollection'
 
@@ -20,6 +20,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
     return this.currentPage === this.lastPage
   }
 
+  // @ts-ignore
   get currentPage() {
     return this._currentPage || 0
   }
@@ -69,7 +70,7 @@ export abstract class ExpansibleCollection<R extends IResource> extends PageColl
 
     await this.queryAsExpansible()
     this.expandedItems = [...this.addedItems]
-    this.items = classToClass(this.expandedItems)
+    this.items = instanceToInstance(this.expandedItems)
 
     this.perPage = perPage
     this.currentPage = currentPage

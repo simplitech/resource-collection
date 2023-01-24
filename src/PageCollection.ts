@@ -74,7 +74,7 @@ export abstract class PageCollection<R extends IResource> extends ResourceCollec
     return this
   }
 
-  abstract async queryAsPage(): Promise<any>
+  abstract queryAsPage(): Promise<any>
 
   async querySearch() {
     if (
